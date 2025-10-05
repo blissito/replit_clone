@@ -1,26 +1,32 @@
-# 🚀 Landing Maker
+# 🚀 Landing Maker (Replit Clone)
 
-AI-powered landing page builder using **LlamaIndex Agent Workflows**, **Express**, and **Preact**.
+> 📚 **Proyecto educativo** para talleres de IA y Agentes
+>
+> 🎓 Aprende a construir este proyecto en: **[www.fixtergeek.com/llamaindex](https://www.fixtergeek.com/llamaindex)**
+
+AI-powered landing page builder con multi-modelo (GPT-4o, Claude) y deployment a Netlify.
 
 ## 🎯 Features
 
-- 💬 **Streaming Chat**: Real-time AI responses using Server-Sent Events
-- 🤖 **Agent Workflows**: Pure LlamaIndex pattern with autonomous tool selection
-- 📝 **Code Editor**: Live CodeMirror preview of generated HTML/CSS/JS
-- 👁️ **Live Preview**: Instant iframe preview of landing pages
-- 🚀 **Netlify Deploy**: One-click deployment to public URLs
+- 💬 **Streaming Chat**: SSE real-time con feedback de herramientas
+- 🤖 **Multi-modelo**: GPT-5 Nano, GPT-5 Mini, Haiku 3, Sonnet 4.5
+- 🧠 **Memoria conversacional**: Edita iterativamente ("cámbialo a rojo")
+- 👁️ **Live Preview**: Vista instantánea en iframe
+- 🚀 **Netlify Deploy**: Deploy programático (en desarrollo)
+- 🎨 **Tool Cards**: Status visual de cada herramienta ejecutada
 
 ## 🏗️ Architecture
 
-### Backend: Express + LlamaIndex
-- **Agent Workflow**: Single agent with 4 tools (create_html, edit_code, get_code, deploy_to_netlify)
-- **SSE Streaming**: Real-time event streaming to frontend
-- **File System**: Projects stored in `/projects` directory
+### Backend: Express + Direct SDKs
+- **Multi-SDK**: Anthropic SDK + OpenAI SDK directo (sin LlamaIndex)
+- **3 Tools**: create_html, edit_code, deploy_to_netlify
+- **SSE Streaming**: Server-Sent Events para feedback en tiempo real
+- **File System**: Proyectos en `/projects/{projectId}/index.html`
 
-### Frontend: Preact + Vite
-- **3-Panel Layout**: Chat | Code Editor | Live Preview
-- **CodeMirror**: Syntax highlighting for HTML/CSS/JS
-- **Tailwind CSS**: Modern, responsive styling
+### Frontend: Vanilla JS + Tailwind
+- **Single HTML**: Todo en `public/index.html` (sin build step)
+- **Chat + Preview**: 2 paneles lado a lado
+- **Tool Cards**: Indicadores visuales de ejecución de herramientas
 
 ## 🚀 Quick Start
 
@@ -33,22 +39,19 @@ pnpm install
 Create `.env` file:
 ```env
 OPENAI_API_KEY=sk-...
-NETLIFY_AUTH_TOKEN=...  # Optional, for deployment
+ANTHROPIC_API_KEY=sk-ant-...
+NETLIFY_AUTH_TOKEN=nfp_...  # Optional, for deployment
 PORT=3000
 ```
 
 ### 3. Run Development
 ```bash
-# Start both backend and frontend
+# Start server (single command)
 pnpm dev
-
-# Or run separately:
-pnpm dev:server  # Backend on :3000
-pnpm dev:client  # Frontend on :5173
 ```
 
 ### 4. Open App
-Open http://localhost:5173
+Open **http://localhost:3000** (todo en un puerto)
 
 ## 📋 Usage
 
@@ -109,10 +112,10 @@ landing_maker/
 
 ## 🔧 Tech Stack
 
-- **Backend**: Express, LlamaIndex, OpenAI
-- **Frontend**: Preact, Vite, CodeMirror, Tailwind CSS
-- **AI**: GPT-4o-mini (fast, cost-effective)
-- **Deploy**: Netlify CLI
+- **Backend**: Express, Anthropic SDK, OpenAI SDK
+- **Frontend**: Vanilla JS, Tailwind CDN (sin build)
+- **AI**: Multi-modelo (GPT-4o, GPT-4o-mini, Claude Haiku, Claude Sonnet)
+- **Deploy**: Netlify CLI (programático)
 
 ## 🎨 Design Philosophy
 
@@ -146,9 +149,24 @@ landing_maker/
 
 ## 📚 Learn More
 
-- [LlamaIndex Agent Workflows](https://docs.llamaindex.ai/en/stable/module_guides/workflow/)
-- [Preact Documentation](https://preactjs.com/)
+### Taller Completo
+🎓 **[Taller de IA Agents con LlamaIndex](https://www.fixtergeek.com/llamaindex)**
+
+Aprende a construir este proyecto desde cero en nuestro taller interactivo.
+
+### Recursos Técnicos
+- [Anthropic SDK](https://docs.anthropic.com/en/api/client-sdks)
+- [OpenAI SDK](https://platform.openai.com/docs/api-reference)
 - [Netlify CLI](https://docs.netlify.com/cli/get-started/)
+
+## 🎯 Objetivos Educativos
+
+Este proyecto enseña:
+1. **Multi-modelo AI**: Cómo usar diferentes LLMs con la misma interfaz
+2. **Tool Calling**: Patrones de function calling con SDKs oficiales
+3. **SSE Streaming**: Server-Sent Events para feedback en tiempo real
+4. **Conversational Memory**: Mantener contexto entre requests
+5. **Error Handling**: Gestión de errores en aplicaciones AI
 
 ## 📄 License
 
@@ -156,4 +174,5 @@ MIT
 
 ---
 
-Built with ❤️ using modern 2025 patterns
+🎓 **Proyecto educativo** por [FixterGeek](https://www.fixtergeek.com)
+Built with ❤️ para talleres de IA y Desarrollo
